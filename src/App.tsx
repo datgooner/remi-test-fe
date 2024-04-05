@@ -1,17 +1,22 @@
-import { useBearStore } from "@/stores/useBearStore";
-import { Button } from "./components/ui/button";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import { MainShell } from "@/components/layouts/main-shell";
+import HomePage from "@/pages/home/home-page";
+
+const routes = createRoutesFromElements(
+  <Route element={<MainShell />}>
+    <Route path="/" element={<HomePage />}>
+      {/* <Route path="share" lazy={() => import("./pages/share/share-page")} /> */}
+    </Route>
+  </Route>
+);
 
 function App() {
-  const { bears, increase } = useBearStore();
-  return (
-    <div className="prose p-10">
-      <main className="">
-        <h1>Hello</h1>
-        <h2>{bears}</h2>
-        <Button onClick={() => increase(1)}>increase</Button>
-      </main>
-    </div>
-  );
+  return <RouterProvider router={createBrowserRouter(routes)} />;
 }
 
 export default App;
