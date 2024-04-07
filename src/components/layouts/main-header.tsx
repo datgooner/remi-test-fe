@@ -1,15 +1,19 @@
 import { HomeIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { AuthForm } from "./auth-form";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { UserAction } from "./user-action";
 
 const MainHeader = () => {
+  const isLoggedIn = useAuthStore((state) => !!state.token);
+
   return (
-    <header className="flex h-16 items-center justify-between px-8 shadow">
-      <Link to="/" className="prose flex items-center space-x-2">
+    <header className="h-header fixed left-0 right-0 top-0 z-50 flex items-center justify-between bg-white px-8 shadow">
+      <Link to="/" className="prose mr-4 flex items-center space-x-2 md:mr-0">
         <HomeIcon className="size-10" />
-        <h1>Funny movies</h1>
+        <h1 className="hidden md:inline">Funny movies</h1>
       </Link>
-      <AuthForm />
+      {isLoggedIn ? <UserAction /> : <AuthForm />}
     </header>
   );
 };

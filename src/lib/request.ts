@@ -30,14 +30,17 @@ request.interceptors.response.use(
       if (!mutex.isLocked()) {
         const release = await mutex.acquire();
         try {
-          const { token, refreshToken } = { token: "ab", refreshToken: "abc" };
-          if (token) {
-            useAuthStore.setState({ token, refreshToken });
-            // retry the initial query
-            await request(config);
-          } else {
-            useAuthStore.setState({ token: null, refreshToken: null });
-          }
+          // TODO: update refresh token function
+          useAuthStore.getState().logout();
+
+          // const { token, refreshToken } = { token: "ab", refreshToken: "abc" };
+          // if (token) {
+          //   useAuthStore.setState({ token, refreshToken });
+          //   // retry the initial query
+          //   await request(config);
+          // } else {
+          //   useAuthStore.setState({ token: null, refreshToken: null });
+          // }
         } finally {
           release();
         }
@@ -45,6 +48,8 @@ request.interceptors.response.use(
         await mutex.waitForUnlock();
         await request(config);
       }
+    } else {
+      throw error;
     }
   }
 );

@@ -1,24 +1,30 @@
+import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useMemo } from "react";
-import { useForm } from "react-hook-form";
+import { Loading } from "@/components/ui/loading";
+import { toast } from "@/components/ui/use-toast";
+import { extractErrorMessage } from "@/lib/utils";
+import { LoginRequest } from "@/model/auth.model";
+import { loginOrRegister } from "@/services/auth.service";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { useMutation } from "@tanstack/react-query";
+import { LogIn } from "lucide-react";
+import { useForm, useFormContext } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "../ui/button";
-import { toast } from "../ui/use-toast";
+
+const loginValidationSchema = z.object({
+  email: z.string().trim().min(1, "Please enter email").email("Email invalid"),
+  password: z
+    .string()
+    .min(1, "Please enter password")
+    .min(8, "Password at least 8 characters"),
+});
 
 const AuthForm = () => {
-  const loginValidationSchema = useMemo(
-    () =>
-      z.object({
-        email: z
-          .string()
-          .trim()
-          .min(1, "Please enter email")
-          .email("Email invalid"),
-        password: z.string().min(1, "Please enter password"),
-      }),
-    []
-  );
+  const { mutateAsync: loginOrRegisterFn, isPending } = useMutation({
+    mutationFn: (values: LoginRequest) => loginOrRegister(values),
+  });
+  const setToken = useAuthStore((state) => state.setToken);
 
   const form = useForm<z.infer<typeof loginValidationSchema>>({
     defaultValues: {
@@ -41,7 +47,15 @@ const AuthForm = () => {
         });
       return;
     }
-    console.log("🚀 ~ onSubmit ~ values:", values);
+    try {
+      const response = await loginOrRegisterFn(values);
+      setToken(response.token);
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        description: extractErrorMessage(error, "Error"),
+      });
+    }
   };
 
   return (
@@ -69,9 +83,30 @@ const AuthForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Sign in / Sign up</Button>
+        <ButtonSubmit isPending={isPending} />
       </form>
     </Form>
   );
 };
 export { AuthForm };
+
+const ButtonSubmit = ({ isPending }: { isPending: boolean }) => {
+  const { formState } = useFormContext<z.infer<typeof loginValidationSchema>>();
+
+  return (
+    <Button
+      type="submit"
+      disabled={
+        isPending ||
+        !(formState.dirtyFields.email && formState.dirtyFields.password)
+      }
+
+    >
+      {isPending && <Loading className="mr-2" />}
+      <span className="hidden md:inline">Login / Register</span>
+      <span className="inline md:hidden">
+        <LogIn width={16} height={16}/>
+      </span>
+    </Button>
+  );
+};
