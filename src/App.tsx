@@ -1,19 +1,20 @@
 import { MainShell } from "@/components/layouts/main-shell";
 import { Notifications } from "@/components/notifications";
+import { ProtectedRoute } from "@/components/protected-route";
 import { Toaster } from "@/components/ui/toaster";
 import HomePage from "@/pages/home/home-page";
 import SharePage from "@/pages/share/share-page";
-import "@/styles/global.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import "react-loading-skeleton/dist/skeleton.css";
+// import "react-loading-skeleton/dist/skeleton.css";
 import {
   Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import { ProtectedRoute } from "./components/protected-route";
+import "./styles/global.css";
 
+const queryClient = new QueryClient();
 const Providers = () => {
   return (
     <QueryClientProvider client={queryClient}>
@@ -32,7 +33,6 @@ const routes = createRoutesFromElements(
     </Route>
   </Route>
 );
-const queryClient = new QueryClient();
 function App() {
   return <RouterProvider router={createBrowserRouter(routes)} />;
 }

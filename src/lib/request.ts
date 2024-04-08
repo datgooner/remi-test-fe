@@ -1,9 +1,10 @@
+import { BASE_URl } from "@/constants/environment";
 import { useAuthStore } from "@/stores/useAuthStore";
-import axios, { AxiosHeaders } from "axios";
 import { Mutex } from "async-mutex";
+import axios, { AxiosHeaders } from "axios";
 
 const request = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URl,
+  baseURL: BASE_URl,
 });
 
 request.interceptors.request.use(async (config) => {

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import io from "socket.io-client";
 import { toast } from "./ui/use-toast";
+import { SOCKET_URL } from "@/constants/environment";
 
 const Notifications = () => {
   const isLoggedIn = useAuthStore((state) => !!state.token);
@@ -15,7 +16,7 @@ const Notifications = () => {
 
   useEffect(() => {
     if (isLoggedIn && me) {
-      const socket = io(import.meta.env.VITE_SOCKET_URl);
+      const socket = io(SOCKET_URL);
       socket.emit(SocketEvent.Authenticate, me._id);
       socket.on(SocketEvent.Notification, (data) => {
         const video = data.data as VideoModel;
