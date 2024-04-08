@@ -1,4 +1,5 @@
 import { SocketEvent } from "@/constants/enum";
+import { SOCKET_URL } from "@/constants/environment";
 import { useGetMe } from "@/hooks/query/useGetMe";
 import { VideoModel } from "@/model/video.model";
 import { useAuthStore } from "@/stores/useAuthStore";
@@ -7,7 +8,6 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import io from "socket.io-client";
 import { toast } from "./ui/use-toast";
-import { SOCKET_URL } from "@/constants/environment";
 
 const Notifications = () => {
   const isLoggedIn = useAuthStore((state) => !!state.token);

@@ -23,5 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
+# test coverage report
+__coverage__
+
 .env
 .env*

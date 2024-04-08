@@ -1,6 +1,6 @@
 import { MainShell } from "@/components/layouts/main-shell";
 import { Notifications } from "@/components/notifications";
-import { ProtectedRoute } from "@/components/protected-route";
+import { ProtectedRoute } from "@/components/route/protected-route";
 import { Toaster } from "@/components/ui/toaster";
 import HomePage from "@/pages/home/home-page";
 import SharePage from "@/pages/share/share-page";
