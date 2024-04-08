@@ -1,8 +1,7 @@
 import { Loading } from "@/components/ui/loading";
 import { useGetVideos } from "@/hooks/query/useGetVideos";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { YoutubeVideo } from "./youtube-video";
-import { YoutubeVideoSkeleton } from "./youtube-video-skeleton";
+import { YoutubeVideo, YoutubeVideoSkeleton } from "./youtube-video";
 
 const HomePage = () => {
   const {
@@ -15,7 +14,7 @@ const HomePage = () => {
 
   const renderSkeleton = () => {
     return (
-      <div className="p-10">
+      <div className="p-10" data-testid="loading-container">
         {Array(2)
           .fill(null)
           .map((_, index) => {

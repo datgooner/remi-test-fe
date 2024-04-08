@@ -20,7 +20,7 @@ vi.mock("./ui/use-toast", async (importOriginal) => {
   };
 });
 
-vi.mock("@/hooks/query/useGetMe.ts", () => ({
+vi.mock("@/hooks/query/useGetMe", () => ({
   useGetMe: vi.fn(),
 }));
 vi.mock("@tanstack/react-query", async () => ({

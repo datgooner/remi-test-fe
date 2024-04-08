@@ -28,6 +28,7 @@ const SharePage = () => {
   const { mutateAsync: shareVideoFn, isPending } = useMutation({
     mutationFn: (url: string) => shareVideo(url),
   });
+
   const form = useForm<ShareFormValue>({
     resolver: zodResolver(validationSchema),
     defaultValues: {
@@ -37,9 +38,11 @@ const SharePage = () => {
   const onSubmit = (value: ShareFormValue) => {
     shareVideoFn(value.url)
       .then(() => {
+        console.log(value.url);
         toast({
           variant: "success",
           description: "Successfully",
+          duration: 5000,
         });
       })
       .catch((err) => {
@@ -53,9 +56,9 @@ const SharePage = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="grid w-full place-items-center mt-24"
+        className="mt-24 grid w-full place-items-center"
       >
-        <Card className="w-6/12 py-18">
+        <Card className="py-18 w-6/12">
           <CardHeader className="mb-4">
             <CardTitle>Share a Youtube movie</CardTitle>
           </CardHeader>
