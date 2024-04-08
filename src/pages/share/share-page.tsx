@@ -42,7 +42,6 @@ const SharePage = () => {
         toast({
           variant: "success",
           description: "Successfully",
-          duration: 5000,
         });
       })
       .catch((err) => {

@@ -50,6 +50,10 @@ const AuthForm = () => {
     try {
       const response = await loginOrRegisterFn(values);
       setToken(response.token);
+      toast({
+        variant: "success",
+        description: "Login Successfully",
+      });
     } catch (error) {
       toast({
         variant: "destructive",
@@ -100,12 +104,11 @@ const ButtonSubmit = ({ isPending }: { isPending: boolean }) => {
         isPending ||
         !(formState.dirtyFields.email && formState.dirtyFields.password)
       }
-
     >
       {isPending && <Loading className="mr-2" />}
       <span className="hidden md:inline">Login / Register</span>
       <span className="inline md:hidden">
-        <LogIn width={16} height={16}/>
+        <LogIn width={16} height={16} />
       </span>
     </Button>
   );
