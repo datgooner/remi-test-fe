@@ -75,7 +75,7 @@ This project is using Vitest and Testing-library/react for testing. To use them,
 
 ## Deployment
 
-I'm using vercel as a free hosting for this project. It's already integrated with my vercel project. Vercel will automatically trigger deployment when got a change from main brand.
+I'm using [vercel](https://vercel.com/) as a free hosting for this project. It's already integrated with my vercel project. Vercel will automatically trigger deployment when got a change from main brand.
 
 Wanna use other way?
 
