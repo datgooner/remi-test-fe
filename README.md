@@ -85,7 +85,7 @@ I already have a docker setup for deployment. To use it:
     ```bash
     docker build . -t <your-container-name>:<version>
 
-Replace <your-container-name> and <version> with the name and version you want.
+Replace 'your-container-name' and 'version' with the name and version you want.
 
 ## Usage
 
