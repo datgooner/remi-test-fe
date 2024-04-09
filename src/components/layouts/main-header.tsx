@@ -8,10 +8,13 @@ const MainHeader = () => {
   const isLoggedIn = useAuthStore((state) => !!state.token);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 flex h-header items-center justify-between bg-white px-8 shadow">
-      <Link to="/" className="prose mr-4 flex items-center space-x-2 md:mr-0">
+    <header className="fixed left-0 right-0 top-0 z-50 flex h-header items-center justify-between bg-white px-4 shadow sm:px-8">
+      <Link
+        to="/"
+        className="prose flex items-center space-x-2 sm:mr-4 md:mr-0"
+      >
         <HomeIcon className="size-10" />
-        <h1 className="hidden md:inline">Funny movies</h1>
+        <h1 className="hidden text-2xl sm:inline lg:text-4xl">Funny movies</h1>
       </Link>
       {isLoggedIn ? <UserAction /> : <AuthForm />}
     </header>

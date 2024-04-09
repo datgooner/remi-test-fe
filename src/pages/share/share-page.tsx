@@ -55,9 +55,9 @@ const SharePage = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mt-24 grid w-full place-items-center"
+        className="mt-20 flex w-full items-center justify-center marker:sm:mt-40"
       >
-        <Card className="py-18 w-6/12">
+        <Card className="py-18 mx-4 w-11/12 sm:w-6/12">
           <CardHeader className="mb-4">
             <CardTitle>Share a Youtube movie</CardTitle>
           </CardHeader>
@@ -66,7 +66,7 @@ const SharePage = () => {
               control={form.control}
               name="url"
               render={({ field }) => (
-                <FormItem className="flex flex-row space-x-4">
+                <FormItem className="flex flex-col sm:flex-row sm:space-x-4">
                   <FormLabel className="mt-4">Youtube URL:</FormLabel>
                   <div className="flex-1 space-y-8">
                     <FormControl>

@@ -8,8 +8,8 @@ const UserAction = () => {
   const { data: me, isLoading } = useGetMe();
   const logout = useAuthStore((state) => state.logout);
   return (
-    <div className="flex items-center space-x-6">
-      <div className="hidden md:block">
+    <div className="flex items-center space-x-2 sm:space-x-6">
+      <div className="hidden text-sm sm:block md:text-base">
         Welcome{" "}
         <span className="font-semibold">
           {isLoading ? (
