@@ -1,5 +1,5 @@
 import { useGetMe } from "@/hooks/query/useGetMe";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "@/stores/useAuthStore";
 import Skeleton from "react-loading-skeleton";

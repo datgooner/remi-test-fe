@@ -104,6 +104,7 @@ const ButtonSubmit = ({ isPending }: { isPending: boolean }) => {
         isPending ||
         !(formState.dirtyFields.email && formState.dirtyFields.password)
       }
+      data-testid="button-submit"
     >
       {isPending && <Loading className="mr-2" />}
       <span className="hidden md:inline">Login / Register</span>

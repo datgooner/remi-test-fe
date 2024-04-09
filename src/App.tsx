@@ -5,7 +5,6 @@ import { Toaster } from "@/components/ui/toaster";
 import HomePage from "@/pages/home/home-page";
 import SharePage from "@/pages/share/share-page";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-// import "react-loading-skeleton/dist/skeleton.css";
 import {
   Route,
   RouterProvider,
