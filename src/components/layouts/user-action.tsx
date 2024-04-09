@@ -13,7 +13,7 @@ const UserAction = () => {
         Welcome{" "}
         <span className="font-semibold">
           {isLoading ? (
-            <span className="inline-block w-40">
+            <span className="inline-block w-40" data-testid="loading-skeleton">
               <Skeleton />
             </span>
           ) : (
