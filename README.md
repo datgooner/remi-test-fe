@@ -32,8 +32,8 @@ To install and configure the project, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/your-project.git
-   cd your-project
+   git clone https://github.com/datgooner/remi-test-fe
+   cd remi-test-fe
 
 2. **Install dependencies:**
    ```bash
@@ -53,7 +53,7 @@ We have two choice to run the application on the local development
 
 ### using docker
 
-We have setup a optimized docker file for development, to use it, start your docker instance, follow these step:
+We have setup a optimized docker file for development, to use it, start your docker instance, follow this step:
 
 1. **Start docker compose:**
    ```bash
@@ -79,9 +79,13 @@ I'm using vercel as a free hosting for this project. It's already integrated wit
 
 Wanna use other way?
 
-I already have a docker setup for deployment. To use it: 
-     ```bash
-     docker build . -t <your-container-name>:<version>
+I already have a docker setup for deployment. To use it:
+
+1.  **Using docker build command** 
+    ```bash
+    docker build . -t <your-container-name>:<version>
+
+Replace <your-container-name> and <version> with the name and version you want.
 
 ## Usage
 
