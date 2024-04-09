@@ -71,7 +71,7 @@ This project is using Vitest and Testing-library/react for testing. To use them,
    ```bash
    yarn test:coverage
 
-   The test coverage report will be stored in __coverage__ file. It's ignored by git.
+The test coverage report will be stored in __coverage__ file. It's ignored by git.
 
 ## Deployment
 
