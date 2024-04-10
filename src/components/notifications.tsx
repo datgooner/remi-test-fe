@@ -16,8 +16,11 @@ const Notifications = () => {
 
   useEffect(() => {
     if (isLoggedIn && me) {
-      const socket = io(SOCKET_URL);
-      socket.emit(SocketEvent.Authenticate, me._id);
+      const socket = io(SOCKET_URL, {
+        query: {
+          userId: me._id,
+        },
+      });
       socket.on(SocketEvent.Notification, (data) => {
         const video = data.data as VideoModel;
         toast({

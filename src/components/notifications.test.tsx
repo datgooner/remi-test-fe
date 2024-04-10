@@ -28,15 +28,21 @@ vi.mock("@tanstack/react-query", async () => ({
   useQueryClient: vi.fn(),
 }));
 
+const mockUseGetMe = {
+  data: { _id: "user_id", email: "email@gmail.com" },
+};
+
+const socketQueryOptions = {
+  query: { userId: mockUseGetMe.data._id },
+};
+
 describe("Notifications component", () => {
   beforeEach(() => {
-    (useGetMe as Mock).mockReturnValue({
-      data: { _id: "user_id", email: "email@gmail.com" },
-    });
     (useQueryClient as Mock).mockReturnValue({ invalidateQueries: vi.fn() });
 
-    // mocking isLoggedIn
+    // mocking isLoggedIn and having use info
     useAuthStore.setState({ token: "token" });
+    (useGetMe as Mock).mockReturnValue(mockUseGetMe);
   });
 
   it("connects to the socket and listens for notifications when logged in", async () => {
@@ -49,12 +55,10 @@ describe("Notifications component", () => {
 
     render(<Notifications />);
 
-    await waitFor(() => expect(io).toHaveBeenCalledWith(SOCKET_URL));
-
-    expect(mockSocket.emit).toHaveBeenCalledWith(
-      SocketEvent.Authenticate,
-      "user_id"
+    await waitFor(() =>
+      expect(io).toHaveBeenCalledWith(SOCKET_URL, socketQueryOptions)
     );
+
     expect(mockSocket.on).toHaveBeenCalledWith(
       SocketEvent.Notification,
       expect.any(Function)
@@ -71,7 +75,9 @@ describe("Notifications component", () => {
 
     const { unmount } = render(<Notifications />);
 
-    await waitFor(() => expect(io).toHaveBeenCalledWith(SOCKET_URL));
+    await waitFor(() =>
+      expect(io).toHaveBeenCalledWith(SOCKET_URL, socketQueryOptions)
+    );
 
     unmount();
 
@@ -89,7 +95,9 @@ describe("Notifications component", () => {
 
     render(<Notifications />);
 
-    await waitFor(() => expect(io).toHaveBeenCalledWith(SOCKET_URL));
+    await waitFor(() =>
+      expect(io).toHaveBeenCalledWith(SOCKET_URL, socketQueryOptions)
+    );
 
     (io().on as Mock).mock.calls[0][1]({
       data: {
