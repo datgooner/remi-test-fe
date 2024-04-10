@@ -4,10 +4,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { Mock } from "vitest";
 import SharePage from "./share-page";
+import { useNavigate } from "react-router-dom";
 
 vi.mock("@/services/video.service", () => ({
   shareVideo: vi.fn(),
 }));
+
+vi.mock("react-router-dom", () => ({ useNavigate: vi.fn() }));
 
 const queryClient = new QueryClient();
 
@@ -70,7 +73,7 @@ describe("SharePage component", () => {
   });
 
   it("should show success message after successful submission and refetch video list", async () => {
-    const { getByText, getByLabelText, findByText } = render(
+    const { getByText, getByLabelText } = render(
       <QueryClientProvider client={queryClient}>
         <SharePage />
         <Toaster />
@@ -90,8 +93,16 @@ describe("SharePage component", () => {
         queryKey: ["getVideos"],
       });
     });
+    const navigateFn = vi.fn();
+    (useNavigate as Mock).mockReturnValue(navigateFn);
 
-    expect(await findByText("Successfully")).toBeInTheDocument();
+    waitFor(() => {
+      expect(navigateFn).toHaveBeenCalledWith("/");
+    });
+
+    waitFor(() => {
+      expect(getByText("Successfully")).toBeInTheDocument();
+    });
   });
 
   it("should show error message after failing submission", async () => {
