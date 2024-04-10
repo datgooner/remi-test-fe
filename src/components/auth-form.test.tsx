@@ -28,7 +28,10 @@ describe("AuthForm", () => {
   });
 
   it("should login successfully with valid data", async () => {
-    (loginOrRegister as Mock).mockReturnValue({ token: "dummy token" });
+    (loginOrRegister as Mock).mockReturnValue({
+      token: "dummy token",
+      message: "Login Successfully",
+    });
 
     const { getByPlaceholderText, getByText, getByTestId } = render(
       <AuthForm />,
@@ -52,6 +55,7 @@ describe("AuthForm", () => {
     await waitFor(() =>
       expect(getByText("Login Successfully")).toBeInTheDocument()
     );
+
     const isLoggedIn = !!useAuthStore.getState().token;
     expect(isLoggedIn).toBeTruthy();
   });

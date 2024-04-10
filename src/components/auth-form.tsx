@@ -52,7 +52,7 @@ const AuthForm = () => {
       setToken(response.token);
       toast({
         variant: "success",
-        description: "Login Successfully",
+        description: response.message,
       });
     } catch (error) {
       toast({
