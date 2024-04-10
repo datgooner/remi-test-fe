@@ -14,7 +14,7 @@ import { toast } from "@/components/ui/use-toast";
 import { extractErrorMessage } from "@/lib/utils";
 import { shareVideo } from "@/services/video.service";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -28,6 +28,7 @@ const SharePage = () => {
   const { mutateAsync: shareVideoFn, isPending } = useMutation({
     mutationFn: (url: string) => shareVideo(url),
   });
+  const queryClient = useQueryClient();
 
   const form = useForm<ShareFormValue>({
     resolver: zodResolver(validationSchema),
@@ -38,11 +39,11 @@ const SharePage = () => {
   const onSubmit = (value: ShareFormValue) => {
     shareVideoFn(value.url)
       .then(() => {
-        console.log(value.url);
         toast({
           variant: "success",
           description: "Successfully",
         });
+        queryClient.invalidateQueries({ queryKey: ["getVideos"] });
       })
       .catch((err) => {
         toast({

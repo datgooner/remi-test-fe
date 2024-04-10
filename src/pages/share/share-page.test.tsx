@@ -69,7 +69,7 @@ describe("SharePage component", () => {
     });
   });
 
-  it("should show success message after successful submission", async () => {
+  it("should show success message after successful submission and refetch video list", async () => {
     const { getByText, getByLabelText, findByText } = render(
       <QueryClientProvider client={queryClient}>
         <SharePage />
@@ -84,6 +84,12 @@ describe("SharePage component", () => {
     );
     fireEvent.change(input, { target: { value: "http://youtube.com/ab" } });
     fireEvent.click(shareButton);
+
+    waitFor(() => {
+      expect(vi.spyOn(queryClient, "invalidateQueries")).toHaveBeenCalledWith({
+        queryKey: ["getVideos"],
+      });
+    });
 
     expect(await findByText("Successfully")).toBeInTheDocument();
   });
