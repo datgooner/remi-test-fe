@@ -9,8 +9,10 @@ This project is a FE part of web application built with those tech stacks:
 - Tailwind CSS, Shadcn/ui
 - Zustand, React Query
 - Socket io
+
 - Eslint, Prettier config
 - Husky, Lint-staged
+
 - Vitest, Testing-library/react
 - Docker, and deployed on Vercel
 
@@ -29,6 +31,7 @@ Before you begin, ensure you have met the following requirements:
 ## Installation & Configuration
 
 To install and configure the project, follow these steps:
+
 ```bash
 # Clone the repository:
 
