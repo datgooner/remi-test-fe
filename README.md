@@ -46,18 +46,18 @@ We have two choices to run the application on the local development
 
 ### yarn
 
-   **Start the development server:**
+**Start the development server:**
 
 ```bash
    yarn dev
 ```
-   **Access the application in a web browser at http://localhost:3000**
+**Access the application in a web browser at http://localhost:3000**
 
 ### docker
 
 We have setup a optimized docker file for development, to use it, start your docker instance, follow this step:
 
-   **Start docker compose:**
+**Start docker compose:**
 
 ```bash
    docker compose up
@@ -85,7 +85,7 @@ Wanna use other way?
 
 I already have a docker setup for deployment. To use it:
 
-   **Using docker build command**
+**Using docker build command**
 
 ```bash
     docker build . -t <your-container-name>:<version>
