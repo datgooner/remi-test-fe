@@ -29,15 +29,17 @@ Before you begin, ensure you have met the following requirements:
 ## Installation & Configuration
 
 To install and configure the project, follow these steps:
+```bash
+# Clone the repository:
 
-1. **Clone the repository:**
-   ```bash
    git clone https://github.com/datgooner/remi-test-fe
    cd remi-test-fe
 
-2. **Install dependencies:**
-   ```bash
+# Install dependencies:
+
+```bash
    yarn install
+```
 
 ## Running the Application
 
@@ -46,30 +48,33 @@ We have two choice to run the application on the local development
 ### using yarn
 
 1. **Start the development server:**
-   ```bash
-   yarn dev
 
+```bash
+   yarn dev
+```
 2. **Access the application in a web browser at http://localhost:3000**
 
 ### using docker
 
 We have setup a optimized docker file for development, to use it, start your docker instance, follow this step:
 
-1. **Start docker compose:**
-   ```bash
+**Start docker compose:**
+
+```bash
    docker compose up
+```
 
 ## Testing
 
-This project is using Vitest and Testing-library/react for testing. To use them, follow these steps:
+This project is using Vitest and Testing-library/react for testing.
 
-1. **Start the test:**
-   ```bash
+```bash
+# unit tests
    yarn test
 
-2. **Start coverage report**
-   ```bash
+# test coverage
    yarn test:coverage
+```
 
 The test coverage report will be stored in __coverage__ file. It's ignored by git.
 
@@ -81,9 +86,11 @@ Wanna use other way?
 
 I already have a docker setup for deployment. To use it:
 
-1.  **Using docker build command** 
-    ```bash
+**Using docker build command**
+
+```bash
     docker build . -t <your-container-name>:<version>
+```
 
 Replace 'your-container-name' and 'version' with the name and version you want.
 
