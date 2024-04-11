@@ -42,7 +42,7 @@ To install and configure the project, follow these steps:
 
 ## Running the Application
 
-We have two choice to run the application on the local development
+We have two choices to run the application on the local development
 
 ### yarn
 
