@@ -37,7 +37,6 @@ To install and configure the project, follow these steps:
 
 # Install dependencies:
 
-```bash
    yarn install
 ```
 
@@ -45,20 +44,20 @@ To install and configure the project, follow these steps:
 
 We have two choice to run the application on the local development
 
-### using yarn
+### yarn
 
-1. **Start the development server:**
+   **Start the development server:**
 
 ```bash
    yarn dev
 ```
-2. **Access the application in a web browser at http://localhost:3000**
+   **Access the application in a web browser at http://localhost:3000**
 
-### using docker
+### docker
 
 We have setup a optimized docker file for development, to use it, start your docker instance, follow this step:
 
-**Start docker compose:**
+   **Start docker compose:**
 
 ```bash
    docker compose up
@@ -86,7 +85,7 @@ Wanna use other way?
 
 I already have a docker setup for deployment. To use it:
 
-**Using docker build command**
+   **Using docker build command**
 
 ```bash
     docker build . -t <your-container-name>:<version>
